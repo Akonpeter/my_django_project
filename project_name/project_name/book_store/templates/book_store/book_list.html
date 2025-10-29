@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { color: #2c3e50; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        input[type="text"] { padding: 8px; width: 250px; }
+        button { padding: 8px 12px; background: #2c3e50; color: white; border: none; }
+        button:hover { background: #1a252f; }
+    </style>
+</head>
+<body>
+    <h1>Book Store</h1>
+
+    <form method="get">
+        <input type="text" name="q" placeholder="Search books..." value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Published Date</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.published_date }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No books found.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
